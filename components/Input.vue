@@ -1,7 +1,7 @@
 <template lang="pug">
 .input
     input(:type="inputprops.type" class="input__field" :placeholder="inputprops.name")
-    .input__line(v-if="['text', 'number'].includes(inputprops.type)")
+    .underline(v-if="['text', 'number'].includes(inputprops.type)")
 </template>
 
 <script lang="ts">
@@ -47,19 +47,19 @@ export default defineComponent({
             &::placeholder {
                 color: #DDD;
             }
-            &+.input__line {
+            &+.underline {
                 background-color: #FFF;
                 width: calc(100% - 10px);
             }
         }
     }
-    &__line {
-        margin-left: 5px;
-        margin-right: 5px;
-        height: 1px;
-        width: calc(85% - 10px);
-        background-color: #000;
-        transition: 250ms ease-out;
-    }
+}
+.underline {
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 1px;
+    width: calc(85% - 10px);
+    background-color: #000;
+    transition: 250ms ease-out;
 }
 </style>

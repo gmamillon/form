@@ -15,6 +15,10 @@ export const useForm = defineStore({
                         {
                             name: 'Phone n°',
                             type: 'number'
+                        },
+                        {
+                            name: 'Address',
+                            type: 'text'
                         }
                     ]
                 }

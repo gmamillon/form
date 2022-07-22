@@ -24,13 +24,13 @@ export default defineComponent({
 })
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 .section {
     display: flex;
     flex-direction: column;
     background-color: #11AAFFAA;
     color: #111;
-    padding: 15px 15px 25px 15px;
+    padding: 15px 15px 25px;
     border-radius: 5px;
     gap: 15px;
     transition: 130ms ease-out;
@@ -48,6 +48,12 @@ export default defineComponent({
             &:not(:placeholder-shown) {
                 color: #FFF;
             }
+            &:is(:focus) + .underline {
+                background-color: #FFF;
+            }
+        }
+        & .underline {
+            background-color: #BBB;
         }
     }
 }

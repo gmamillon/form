@@ -6,6 +6,8 @@
         Form
         .builder__addSection(@click.prevent="addField")
             i(class="mdi mdi-plus", aria-hidden="true")
+    .footerBlock
+    SectionBuilder()
 </template>
 
 <script lang="ts">
@@ -40,14 +42,19 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     justify-content: center;
+    &__title {
+        width: 96vw;
+        max-width: 480px;
+        padding: 0 2vw;
+    }
+}
+.footerBlock {
+    height: 30vh;
+}
+.builder {
     width: 96vw;
     max-width: 480px;
     padding: 0 2vw;
-    &__title {
-        margin-left: 0px;
-    }
-}
-.builder {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -68,6 +75,5 @@ export default defineComponent({
             color: #FFF;
         }
     } 
-    
 }
 </style>
