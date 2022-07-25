@@ -11,9 +11,7 @@ import { defineComponent, PropType } from 'vue'
 export default defineComponent({
     name: 'Section',
     data() {
-        return {
-            title: ''
-        }
+        return {}
     },
     props: {
         sectionData: Object

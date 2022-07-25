@@ -4,10 +4,10 @@
     button(v-if="!newForm" @click.prevent="newForm = true") New form
     .builder(v-if="newForm")
         Form
+        SectionBuilder()
         .builder__addSection(@click.prevent="addField")
             i(class="mdi mdi-plus", aria-hidden="true")
     .footerBlock
-    SectionBuilder()
 </template>
 
 <script lang="ts">

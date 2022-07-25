@@ -1,10 +1,9 @@
 <template lang="pug">
 .sBuilder
-    .sBuilder__title 
-        .sBuilder__fieldName {{title}}
-        input(type="text", class="sBuilder__field" placeholder="Section Title")
-        .sBuilder__line
-    
+    .sBuilder__title(contenteditable="true" @input="titleChange") {{title}}
+    InputBuilder(v-for="input in inputs", :inputprops="input")
+    .sBuilder__addInput(@click.prevent="addInput")
+        i(class="mdi mdi-plus" aria-hidden="true")
 </template>
 
 <script lang="ts">
@@ -20,59 +19,69 @@ export default defineComponent({
     },
     computed: {
         
+    },
+    methods: {
+        titleChange(e: Event) {
+            const input = e.target as HTMLElement
+            console.log(input.innerText)
+            return this.title = input.innerText
+        },
+        addInput() {
+            this.inputs.push({ name: 'input', type: 'text' })
+        }
     }
 })
 </script>
 
 <style scoped lang="scss">
 .sBuilder {
-    width: calc(100vw - 30px);
-    position: fixed;
-    bottom: 0;
-    left: 0;
     display: flex;
-    background-color: #3E3E3E;
-    color: #FFF;
-    padding: 15px 15px 25px 15px;
-    border-radius: 5px 5px 0 0;
+    flex-direction: column;
+    background-color: #11AAFFAA;
+    color: #111;
+    padding: 15px 15px 25px;
+    border-radius: 5px;
     gap: 15px;
+    transition: 130ms ease-out;
     &__title {
-        max-width: 450px;
         font-family: 'Inter-bold';
-        font-size: 20px;
-    }
-    &__fieldName {
-        padding: 0 0 10px 5px;
-    }
-    &__field {
-        max-width: 450px;
-        padding-bottom: 5px;
-        padding-left: 5px;
-        background-color: #FFFFFF00;
-        border: 0;
-        color: #FFF;
-        font-size: 20px;
-        font-family: 'Inter-medium';
+        font-size: 25px;
         &:focus-visible {
             outline: none;
         }
-        &::placeholder {
-            font-family: 'Inter-light';
-            color:  #DDD;
-            font-size: 20px;
+    }
+    &:focus-within {
+        background-color: #148;
+        color: #FFF;
+        & * {
+            &::placeholder {
+                color: #DDD;
+            }
+            &:not(:placeholder-shown) {
+                color: #FFF;
+            }
         }
-        &:focus+.sBuilder__line {
-            background-color: #FFF;
-            width: calc(100% - 25px);
+        &:deep(input:not(:focus) + .underline) {
+            background-color: #BBB;
         }
     }
-    &__line {
-        margin-left: 5px;
-        margin-right: 5px;
-        height: 1px;
-        width: calc(85% - 25px);
-        background-color: #FFF;
-        transition: 250ms ease-out;
-    }
+    &__addInput {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background-color: #11AAFFAA;
+        border-radius: 5px;
+        font-size: 25px;
+        font-weight: bold;
+        color: #000;
+        transition: 130ms ease-out;
+        &:hover {
+            cursor: pointer;
+            background-color: #148;
+            color: #FFF;
+        }
+    } 
 }
 </style>

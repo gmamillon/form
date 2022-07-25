@@ -9,15 +9,18 @@ export const useForm = defineStore({
                     title: 'Example Section',
                     inputs: [
                         {
-                            name: 'Name',
+                            label: '',
+                            placeholder: 'Name',
                             type: 'text'
                         },
                         {
-                            name: 'Phone n°',
+                            label: '',
+                            placeholder: 'Phone n°',
                             type: 'number'
                         },
                         {
-                            name: 'Address',
+                            label: '',
+                            placeholder: 'Address',
                             type: 'text'
                         }
                     ]

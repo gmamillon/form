@@ -1,8 +1,13 @@
 <template lang="pug">
-.input
-    label(v-if="inputprops.label.length !== 0") {{inputprops.label}}
-    input(:type="inputprops.type" class="input__field" :placeholder="inputprops.placeholder")
-    .underline(v-if="['text', 'number'].includes(inputprops.type)")
+.iBuilder
+    Input(:inputprops="inputprops")
+    .iBuilder__settings
+        input(type="text" class="iBuilder__field" placeholder="Label" v-model="label")
+        .underline
+        input(type="text" class="iBuilder__field" placeholder="PlaceHolder" v-model="placeholder")
+        .underline
+        input(type="text" class="iBuilder__field" placeholder="Type" v-model="type")
+        .underline
 </template>
 
 <script lang="ts">
@@ -10,29 +15,44 @@ import { defineComponent, PropType } from 'vue'
 import Input from '@/types/Input'
 
 export default defineComponent({
-    name: 'Input',
+    name: 'InputBuilder',
     data() {
         return {
-
+            label: '',
+            placeholder: '',
+            type: ''
         }
     },
     props: {
-        inputprops: Object as PropType<Input>
+        iBuilderprops: Object as PropType<Input>
+    },
+    computed: {
+        inputprops() {
+            return {
+                label: this.label,
+                placeholder: this.placeholder,
+                type: this.type
+            }
+        }
     }
 })
 </script>
 
 <style lang="scss">
-.input {
+.iBuilder {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 10px;
+    &__settings {
+        padding: 10px;
+        border: 1px solid #000;
+        border-radius: 5px;
+    }
     &__field {
         padding-bottom: 5px;
         padding-left: 5px;
         background-color: #FFFFFF00;
         border: 0;
-        /* border-bottom: 1px solid; */
         font-size: 20px;
         font-family: 'Inter-medium';
         &:focus-visible {
